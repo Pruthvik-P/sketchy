@@ -3,6 +3,6 @@ import { Router, Request, Response, NextFunction } from "express";
 
 export const userRouter: Router = Router();
 
-userRouter.post("/signup", createUser);
-userRouter.post("/signin", signIn);
+userRouter.post("/auth/signup", createUser);
+userRouter.post("/auth/signin", signIn);
 

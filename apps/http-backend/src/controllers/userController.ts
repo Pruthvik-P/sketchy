@@ -17,7 +17,7 @@ export const createUser = async (
   }
   const existingUser = await prismaClient.user.findFirst({
     where: {
-      email: parseData.data!.username,
+      email: parseData.data!.email,
     },
   });
   if (existingUser) {
@@ -27,7 +27,7 @@ export const createUser = async (
     const hashedPassword = await bcrypt.hash(parseData.data!.password, 10);
     const user = await prismaClient.user.create({
       data: {
-        email: parseData.data!.username,
+        email: parseData.data!.email,
         password: hashedPassword,
         name: parseData.data!.name,
       },
@@ -54,7 +54,7 @@ export const signIn = async (
   try {
     const user = await prismaClient.user.findFirst({
       where: {
-        email: parseData.data!.username,
+        email: parseData.data!.email,
       },
     });
     if (!user) {

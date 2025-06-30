@@ -71,9 +71,9 @@ export const getRooms = async (req: Request, res: Response): Promise<any> => {
         roomId: roomId,
       },
       orderBy: {
-        id: "desc",
+        id: "asc",
       },
-      take: 50,
+      take: 1000,
     });
 
     res.json({
@@ -87,3 +87,15 @@ export const getRooms = async (req: Request, res: Response): Promise<any> => {
     });
   }
 };
+
+export const getRoomSlug = async (req: Request, res: Response) =>{
+  const slug = req.params.slug;
+  const room = await prismaClient.room.findFirst({
+    where:{
+      slug
+    }
+  });
+  res.json({
+    room
+  })
+}
