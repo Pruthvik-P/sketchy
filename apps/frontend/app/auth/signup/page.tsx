@@ -77,7 +77,7 @@ export default function SignUp() {
 
       const result = await response.json();
 
-      if (response.ok) {
+      if (result.userId) {
         toast({
           title: 'Account created successfully!',
           description: 'Welcome to Sketchy. You can now start creating.',
@@ -86,7 +86,7 @@ export default function SignUp() {
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('token', result.token);
         if (result.userId) {
-          router.push("/canvas/${roomId}")
+          router.push("/auth/signin")
         }
         
       } else {
